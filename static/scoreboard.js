@@ -1,6 +1,6 @@
 function display_scoreboard(scoreboard){
   sortedBoard = scoreboard.sort(function(a,b) {
-    if (b.score > a.score) return 1; // b has more score, so a comes first
+    if (b.score > a.score) return 1; // b has more score, so b goes to the top
     if (b.score < a.score) return -1;
     return 0;
   });
