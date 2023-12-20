@@ -1,6 +1,11 @@
 function display_scoreboard(scoreboard){
+  sortedBoard = scoreboard.sort(function(a,b) {
+    if (b.score > a.score) return 1; // b has more score, so a comes first
+    if (b.score < a.score) return -1;
+    return 0;
+  });
   $("#teams").empty();
-  $.each(scoreboard, function(index, team){
+  $.each(sortedBoard, function(index, team){
     addTeamView(team.id, team.name, team.score);
   });
 }
@@ -32,7 +37,7 @@ function increase_score(id){
     contentType: "application/json; charset=utf-8",
     data : JSON.stringify(team_id),
     success: function(result){
-        
+        display_scoreboard(result.scoreboard);
     },
     error: function(request, status, error){
         console.log("Error");
